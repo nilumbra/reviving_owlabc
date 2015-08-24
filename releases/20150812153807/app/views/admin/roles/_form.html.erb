@@ -1,0 +1,15 @@
+<%= f.input :name %>
+<%= f.input :title %>
+<div class="field">
+  <%= f.label "Permission" %>
+  <% for permission in Permission.all %>
+    <div class="field">
+      <div class="ui checkbox">
+        <%= check_box_tag "role[permission_ids][]", permission.id, @role.permissions.include?(permission) %>
+        <label><%=h permission.description %></label>
+      </div>
+    </div>
+  <% end %>
+  <%= hidden_field_tag "role[permission_ids][]", "" %>
+
+</div>

@@ -1,0 +1,32 @@
+<% display_arr = [:username, :course_name, :unit_title, :question_title, :created_at] %>
+<div class="ui secondary pointing menu">
+  <%= link_to "Unsent", collection_path(:scope => 'unsent'), :class => "item #{'active' if params[:scope] != 'sent' }" %>
+  <%= link_to "Sent", collection_path(:scope => 'sent'), :class => "item #{'active' if params[:scope] == 'sent' }" %>
+</div>
+
+<h3 class="ui dividing header">
+  <%= I18n.t "activerecord.models.#{collection.klass.to_s.downcase}" %> List
+</h3>
+
+<table class="ui seven small sortable celled table segment">
+  <thead>
+    <tr>
+      <% display_arr.each do |elem| %>
+      <th>
+        <%= I18n.t "activerecord.attributes.#{collection.klass.to_s.downcase}.#{elem}" %>
+      </th>
+      <% end %>
+      <th>Operate</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% collection.each do |resource| %>
+    <%= render :partial => "admin/shared/record_row", :locals => {:display_arr => display_arr, :resource => resource} %>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="ui column center aligned stackable paginate">
+  <%= paginate collection %>
+</div>

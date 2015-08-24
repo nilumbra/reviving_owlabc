@@ -1,0 +1,5 @@
+<div class="ui teal large menu fluid three item">
+  <%= link_to "Home", root_path, :class => "item #{'active' if current_page?(root_path) || ['profiles', 'pages'].include?(controller_name) }" %>
+  <%= link_to "Feedback", student_feedbacks_path, :class => "item #{'active' if controller_name == 'feedbacks'}" %>
+  <%= link_to "Homework", student_homeworks_path, :class => "item #{'active' if controller_name == 'homeworks'}" %>
+</div>

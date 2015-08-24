@@ -1,0 +1,2 @@
+<% display_arr = [:username, :email, :payment_status, :current_level] %>
+$('#user_<%= resource.id %>').replaceWith('<%=j(render :partial => "admin/shared/record_row", :locals => {:display_arr => display_arr, :resource => resource, :support_operation => true}) %>')

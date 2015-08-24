@@ -1,0 +1,54 @@
+## YAML Template.
+---
+en:
+  activerecord:
+    models:
+      user: 'Student'
+      admin: 'Admin'
+      role: 'Role'
+      permission: 'Permission'
+      course: 'Course'
+      unit: 'Unit'
+      question: 'Question'
+      choice: 'Choice'
+      homework: 'Homework'
+
+    attributes:
+      user:
+        username: Username
+        email: Email
+        payment_status: 'Payment Status'
+        current_level: Level
+      admin:
+        username: Username
+        email: Email
+        role_names: Roles
+      role:
+        name: Name
+        title: Title
+        permission_names: Permissions
+      permission:
+        action: Action
+        subject: Subject
+        description: Description
+      course:
+        published: publised
+        title: Title
+        level: Level
+        kind: Type
+        duration: Duration
+        standard_description: Standard
+      unit:
+        title: Title
+        pdf: PDF
+      question:
+        kind: Type
+        choices_content: Choices
+        content: Content
+        choices: Choices
+      homework:
+        username: User
+        course_name: Book
+        unit_title: Unit
+        question_title: Question
+        created_at: Time Submitted

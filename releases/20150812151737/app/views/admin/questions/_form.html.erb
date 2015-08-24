@@ -1,0 +1,53 @@
+<div class="question_form">
+  <div class="ui two column relaxed fitted stackable grid">
+    <div class="column">
+      <div class="twelve wide icon field">
+        <label>Question Type</label>
+        <% if resource.unit.course.kind == 'Test' %>
+          <div class="six wide field ">
+            <input placeholder="MCQ" disabled="disabled" type="text">
+            <input type="hidden" name="question[kind]" value="MCQ">
+          </div>
+        <% else %>
+          <div class="ui search selection dropdown">
+            <input type="hidden" name="question[kind]" value="<%= resource.kind %>">
+            <i class="dropdown icon"></i>
+            <div class="default text">Question Type</div>
+            <div class="menu">
+              <% Question::QUESTION_TYPE.each do |option|%>
+                <div class="item" data-value="<%= option %>"><%= option %></div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="twelve wide field">
+        <%= f.input :content %>
+      </div>
+    </div>
+    <div class="column choices">
+      <% if resource.kind == 'MCQ' %>
+        <%= render :partial => "new_choices", :locals => {:f => f} %>
+      <% end %>
+    </div>
+    
+  </div>
+</div>
+<% content_for :tail do %>
+  <script type="text/javascript">
+  <% if resource.unit.course.kind == 'Test' %>
+    $('.choices').html('<%= j(render :partial => "new_choices", :locals => {:f => f})%>')
+    $('.choices').show();
+  <% end %>
+  $("input[name='question[kind]']").change(function(){
+    var qtype = $(this).val();
+    if(qtype == 'MCQ'){
+      $('.choices').html('<%= j(render :partial => "new_choices", :locals => {:f => f})%>')
+      $('.choices').show();
+    }else{
+      $('.choices').hide();
+    }
+  })
+  </script>
+<% end %>

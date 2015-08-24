@@ -1,0 +1,7 @@
+<%= simple_form_for resource, :url => resource_path(resource), :method => :put do |f| %>
+  <%= f.error_notification %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  <%= f.button :submit, 'Save' %>
+<% end %>
+<%= render "admin/shared/page_links" %>
+

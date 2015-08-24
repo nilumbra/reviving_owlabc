@@ -1,0 +1,8 @@
+<h4>Answer Choices (select correct answer)</h4>
+<div class="ui column choice_files">
+  <%= f.fields_for :choices do |builder| %>  
+    <%= render 'choice_fields', :f => builder %>
+  <% end %>
+  <%= link_to_add_association raw('<i class="icon plus"></i>Add Choice'), f, :choices, :class => 'ui button green icon mini add_choice_link', :data => {"association-insertion-method" => "before","association-insertion-node" => 'this' } %>
+</div>
+

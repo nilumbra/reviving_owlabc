@@ -1,0 +1,12 @@
+<% if resource.errors.any? %>
+  <div class="ui negative message">
+    <i class="close icon"></i>
+    <ul class="list">
+    <% resource.errors.each do |key, msg| %>
+      <li>
+        <%= i18n_attribute_name(collection, key) %>: <%= msg %>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

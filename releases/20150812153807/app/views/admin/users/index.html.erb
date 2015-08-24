@@ -1,0 +1,4 @@
+<% display_arr = [:username, :email, :payment_status, :current_level] %>
+<%= render :partial => "admin/shared/index", :locals => {:display_arr => display_arr} %>
+
+<%= link_to raw("<i class='icon file excel'></i> Export Excel File"), collection_path(:format => :xls), :class => 'ui green button' %>

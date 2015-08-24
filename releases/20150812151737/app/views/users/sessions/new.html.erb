@@ -1,0 +1,26 @@
+<div class="ui two column middle aligned relaxed fitted stackable grid">
+  <div class="column">
+    <div class="ui form segment">
+      
+      <h2 class="ui top aligned center header">Log in to <%= Settings.site_name %></h2>
+      
+
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="field">
+            <%= f.error_notification %>
+            <%= f.input :login, required: false, autofocus: true, label: "Email (or username)", :placeholder => "e.g.,example@gmail.com" %>
+          </div>
+          <div class="field">
+            <%= f.input :password, required: false, :placeholder => "e.g., ••••••••••••" %>
+          </div>
+          <%= f.button :submit, "Log In" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="ui vertical divider">
+    Or
+  </div>
+  <div class="center aligned column">
+    <%= render "users/shared/links" %>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<% begin %>
+  <% if !resource.support_basic_operation %>
+  <% end %>
+<% rescue %>
+  <% unless current_page?(resource_path(resource)) %>
+      <%= link_to raw('<i class="info circle icon"></i>Preview'), resource_path(resource) %>
+      |
+    <% end %>
+    <%= link_to raw('<i class="icon edit"></i>Edit'), edit_resource_path(resource) %>
+    |
+    <%= link_to raw('<i class="icon remove circle"></i>Destroy'), resource_url(resource), method: :delete, data: { confirm: 'Are you sure?' } %>  
+    
+  <% end %>
+    <% begin %>
+      <%= render :partial => "extra_operations", :locals => {:resource => resource} %>
+    <% rescue %>
+<% end %>

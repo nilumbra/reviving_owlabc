@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title><%= Settings.site_name %>Admin Panel</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <%= render "admin/shared/head_nav" %>
+  <%= render "admin/shared/mobile_side_menu" %>
+  <div class="pusher">
+    <%= render "shared/flash_notice" %>
+    
+    <div class="ui one column stackable center aligned page grid">
+      <div class="column twelve wide pusher">
+        <div class="ui form piled segment login_box">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+</body>
+</html>

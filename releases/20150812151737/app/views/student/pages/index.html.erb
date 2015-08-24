@@ -1,0 +1,32 @@
+
+<%= render "student/shared/menu" %>
+
+<div class="ui two column relaxed fitted stackable grid">
+  <div class="three wide column">
+    <div class="ui tiny card">
+      <div class="ui slide masked image">
+        <%= image_tag @profile.avatar(:thumb), :class => "visible content profile_avatar_img" %>
+      </div>
+      <div class="content">
+        <a class="header">
+          <div class="fileUpload">
+            <label for="file" class="ui icon">
+                <%= link_to raw('<i class="edit icon"></i>
+                Edit Profile'), student_profile_path %></label>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <h2>Welcome back, <%= current_user.display_name %>!</h2>
+    <div class="ui divider"></div>
+    <h4>Current Book: <%= current_user.current_course.title %></h4>
+    <div class="ui teal progress" data-percent="<%= number_to_percentage(current_user.course_percentage * 100, precision: 2 ) %>">
+      <div class="bar">
+        <div class="progress"></div>
+      </div>
+      <div class="label">Progress</div>
+    </div>
+  </div>
+</div>

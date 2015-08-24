@@ -1,0 +1,27 @@
+<%= render "student/shared/menu" %>
+
+<div class="ui two column relaxed fitted stackable grid">
+  <div class="three wide column">
+    <div class="ui tiny card">
+      <div class="ui slide masked image">
+        <%= image_tag current_user.profile.avatar(:thumb), :class => "visible content profile_avatar_img" %>
+      </div>
+      <div class="content">
+        <a class="header">
+          <div class="fileUpload">
+            <label for="file" class="ui icon">
+                <%= link_to raw('<i class="edit icon"></i>
+                Edit Profile'), student_profile_path %></label>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="nine wide column">
+    <h2>Congratulations, <%= current_user.display_name %>, test course is completed!</h2>
+    <div class="ui divider"></div>
+    <h4> Your level: <a class="ui black circular label"><%= current_user.profile.level %></a></h4>
+    <div class="ui divider"></div>
+    <%= link_to "See my new level book", student_root_path, :class => "ui button big blue" %>
+  </div>
+</div>
