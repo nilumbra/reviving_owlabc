@@ -1,7 +1,6 @@
 class Student::PagesController < Student::BaseController
   before_filter :detect_student_paid_status, :only => [:index]
-  # before_filter :detect_current_course, :only => [:index]
-  
+  before_filter :detect_current_course, :only => [:index]
 
   def index
     @profile = current_user.profile
