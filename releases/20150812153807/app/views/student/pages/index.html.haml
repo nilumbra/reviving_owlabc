@@ -1,0 +1,35 @@
+= stylesheet_link_tag 'calendar'
+= javascript_include_tag 'calendar'
+
+= render "student/shared/menu"
+.ui.two.column.relaxed.fitted.stackable.grid
+  .three.wide.column
+    .ui.tiny.card
+      .ui.slide.masked.image
+        = image_tag @profile.avatar(:thumb), :class => "visible content profile_avatar_img"
+      .content
+        %a.header
+          .fileUpload
+            %label.ui.icon{:for => "file"}
+              = link_to raw('<i class="edit icon"></i> |
+                Edit Profile'), student_profile_path   |
+  .column
+    %h2
+      Welcome back, #{current_user.display_name}!
+    .ui.divider
+    %h4
+      Current Book: 
+    .ui.teal.progress
+      .bar
+        .progress
+      .label Progress
+#calendar
+
+:javascript
+  $(function() {
+    // page is now ready, initialize the calendar...
+
+    $('#calendar').fullCalendar({
+        // put your options and callbacks here
+    })
+  });

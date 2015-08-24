@@ -54,6 +54,7 @@ class User < ActiveRecord::Base
   def current_course
     if self.profile.level == 'None'
       Course.published.where(kind: 'Test').first
+
     else
       # byebug
       Course.published.where( kind: 'Normal',
