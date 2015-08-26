@@ -3,7 +3,15 @@
 
 $(function() {
     $('#calendar').fullCalendar({  
-    	events: 'student/unit_events',
+    	eventSources: [ 
+    		{
+    			url: 'student/events'
+    		},
+    		{
+    			url: 'student/homework_events',
+    			color: 'green'
+    		}
+    	],
     	firstDay: 1,
     	height: 500
     });

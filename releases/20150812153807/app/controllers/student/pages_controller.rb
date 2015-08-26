@@ -17,12 +17,13 @@ class Student::PagesController < Student::BaseController
   end
 
   # Units which are going to be display per week on the calendar
-  def unit_events
+  def events
    course = current_user.current_course
    counter_start = 0
    counter_end = 5
    first_chapter = 1 
    @units = []
+   @homework = []
    
    title_string = "Read " + "Unit "
    chapters_string = " (chapters "
@@ -30,6 +31,9 @@ class Student::PagesController < Student::BaseController
    course.units.each do |unit|
       start_date = date_of_next("Monday", unit.course.duration.to_date)
       @units << { title: title_string + unit.title + chapters_string + first_chapter.to_s + "~ " + unit.questions.count.to_s + ")", 
+                  start: start_date + counter_start, 
+                  :end => start_date + counter_end }
+      @homework << { title: title_string + unit.title + chapters_string + first_chapter.to_s + "~ " + unit.questions.count.to_s + ")", 
                   start: start_date + counter_start, 
                   :end => start_date + counter_end }
       counter_start += 7
@@ -40,7 +44,21 @@ class Student::PagesController < Student::BaseController
   end
 
   def homework_events
-    
+   course = current_user.current_course
+   counter_start = 0
+   counter_end = 2
+   @homework = []
+
+   course.units.each do |unit|
+      start_date = date_of_next("Monday", unit.course.duration.to_date)
+      start_date_homework = date_of_next_s("Saturday", start_date)
+      @homework << { title: unit.title + " HW", 
+                  start: start_date_homework + counter_start, 
+                  :end => start_date_homework + counter_end }
+      counter_start += 7
+      counter_end = counter_start + 2
+   end
+      render json: @homework.to_json 
   end
 
   # Date of next Monday
@@ -49,5 +67,11 @@ class Student::PagesController < Student::BaseController
     if wday > 4
       in_month + (8 - wday) # next monday
     end
+  end
+
+  # Date of next Saturday
+  def date_of_next_s(day, in_month)
+    wday  = in_month.wday
+    in_month + (6 - wday) # next monday
   end
 end
