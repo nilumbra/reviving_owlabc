@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     get 'unpaid' => "pages#unpaid"
     get 'hold_on' => "pages#hold_on"
     get 'level' => "pages#level"
+    get 'unit_events' => "pages#unit_events"
     resource :profile do
       put 'upload_avatar'
     end

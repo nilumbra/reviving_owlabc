@@ -18,8 +18,8 @@
       Welcome back, #{current_user.display_name}!
     .ui.divider
     %h4
-      Current Book: 
-    .ui.teal.progress
+      Current Book: #{current_user.current_course.title}
+    .ui.teal.progress{"data-percent" => number_to_percentage(current_user.course_percentage * 100, precision: 2 )}
       .bar
         .progress
       .label Progress

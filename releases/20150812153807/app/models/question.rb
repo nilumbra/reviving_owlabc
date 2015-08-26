@@ -1,13 +1,21 @@
 class Question < ActiveRecord::Base
   belongs_to :unit
+  has_many :choices
+  has_many :homeworks
+
+  validate :must_have_one_choice
+  validate :must_have_one_correct_choice
+  validates :content, :kind, presence: true
+  
+  after_save :delete_choices_if_question
+  accepts_nested_attributes_for :choices, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
+  
+  CHOICE_COUNT_MIN = 1
+  QUESTION_TYPE = ["MCQ", "Question"]
+  
   amoeba do
     enable
   end
-  has_many :choices
-  accepts_nested_attributes_for :choices, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
-  CHOICE_COUNT_MIN = 1
-  validate :must_have_one_choice
-  validate :must_have_one_correct_choice
 
   def must_have_one_choice
     errors.add(:choices, 'must have one choice and must have one correct choice.') if choices_empty?
@@ -24,14 +32,6 @@ class Question < ActiveRecord::Base
   def correct_choices_empty?
     kind == 'MCQ' and choices.select{|choice| choice.is_correct }.length == 0
   end
-
-  validates :content, :kind, presence: true
-
-  QUESTION_TYPE = ["MCQ", "Question"]
-  after_save :delete_choices_if_question
-
-  has_many :homeworks
-
 
   def choices_content
     self.choices.collect do |c| 
