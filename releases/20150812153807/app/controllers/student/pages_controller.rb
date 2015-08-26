@@ -33,9 +33,6 @@ class Student::PagesController < Student::BaseController
       @units << { title: title_string + unit.title + chapters_string + first_chapter.to_s + "~ " + unit.questions.count.to_s + ")", 
                   start: start_date + counter_start, 
                   :end => start_date + counter_end }
-      @homework << { title: title_string + unit.title + chapters_string + first_chapter.to_s + "~ " + unit.questions.count.to_s + ")", 
-                  start: start_date + counter_start, 
-                  :end => start_date + counter_end }
       counter_start += 7
       counter_end = counter_start + 5
       first_chapter = unit.questions.count + 1
