@@ -4,6 +4,7 @@
 $(function() {
     $('#calendar').fullCalendar({  
     	events: 'student/unit_events',
-    	firstDay: 1
+    	firstDay: 1,
+    	height: 500
     });
 });

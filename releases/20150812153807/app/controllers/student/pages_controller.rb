@@ -21,11 +21,11 @@ class Student::PagesController < Student::BaseController
    course = current_user.current_course
    counter_start = 0
    counter_end = 5
+   first_chapter = 1 
    @units = []
    
    title_string = "Read " + "Unit "
    chapters_string = " (chapters "
-   first_chapter = 1 
 
    course.units.each do |unit|
       start_date = date_of_next("Monday", unit.course.duration.to_date)
@@ -37,6 +37,10 @@ class Student::PagesController < Student::BaseController
       first_chapter = unit.questions.count + 1
    end
       render json: @units.to_json 
+  end
+
+  def homework_events
+    
   end
 
   # Date of next Monday
