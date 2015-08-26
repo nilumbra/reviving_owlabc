@@ -24,7 +24,7 @@ class Student::PagesController < Student::BaseController
    @units = []
    course.units.each do |unit|
       start_date = date_of_next("Monday", unit.course.duration.to_date)
-      @units << { title: unit.title, start: start_date + counter_start, 
+      @units << { title: "Read" + " " + "Unit" + " " + unit.title, start: start_date + counter_start, 
                   :end => start_date + counter_end }
       counter_start += 7
       counter_end = counter_start + 5
