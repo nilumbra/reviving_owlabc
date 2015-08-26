@@ -63,9 +63,9 @@ class Student::PagesController < Student::BaseController
   def date_of_next(day, in_month)
     wday  = in_month.wday # number of day in a week (Saturday = 6, Monday = 1)
     if wday > 4
-      in_month + (8 - wday) # next monday
+      in_month + (8 - wday) # next Monday
     else
-      in_month + (6 - wday) #next saturday  
+      in_month + (6 - wday) #next Saturday  
     end
   end
 end
