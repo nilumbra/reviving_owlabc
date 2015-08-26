@@ -17,7 +17,7 @@ class Student::PagesController < Student::BaseController
   end
 
   # Units which are going to be display per week on the calendar
-  def events
+  def unit_events
    course = current_user.current_course
    counter_start = 0
    counter_end = 5
@@ -43,6 +43,7 @@ class Student::PagesController < Student::BaseController
       render json: @units.to_json 
   end
 
+  # Homework events to be diplayed along the units on the calendar
   def homework_events
    course = current_user.current_course
    counter_start = 0
@@ -51,7 +52,7 @@ class Student::PagesController < Student::BaseController
 
    course.units.each do |unit|
       start_date = date_of_next("Monday", unit.course.duration.to_date)
-      start_date_homework = date_of_next_s("Saturday", start_date)
+      start_date_homework = date_of_next("Saturday", start_date)
       @homework << { title: unit.title + " HW", 
                   start: start_date_homework + counter_start, 
                   :end => start_date_homework + counter_end }
@@ -61,17 +62,13 @@ class Student::PagesController < Student::BaseController
       render json: @homework.to_json 
   end
 
-  # Date of next Monday
+  # Date of next Monday or Saturday
   def date_of_next(day, in_month)
-    wday  = in_month.wday
+    wday  = in_month.wday # number of day in a week (Saturday = 6, Monday = 1)
     if wday > 4
       in_month + (8 - wday) # next monday
+    else
+      in_month + (6 - wday) #next saturday  
     end
-  end
-
-  # Date of next Saturday
-  def date_of_next_s(day, in_month)
-    wday  = in_month.wday
-    in_month + (6 - wday) # next monday
   end
 end

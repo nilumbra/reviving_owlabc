@@ -5,7 +5,7 @@ $(function() {
     $('#calendar').fullCalendar({  
     	eventSources: [ 
     		{
-    			url: 'student/events'
+    			url: 'student/unit_events'
     		},
     		{
     			url: 'student/homework_events',
