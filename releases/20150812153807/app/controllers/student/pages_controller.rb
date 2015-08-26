@@ -39,29 +39,4 @@ class Student::PagesController < Student::BaseController
       in_month + (8 - wday) # next monday
     end
   end
-
 end
-
-
-
-
- # def unit_events
- #    # respond_to :json
- #    # p '++++++++++++++++++++', 
- #    course = current_user.current_course
- #    counter = 7
- #    first_u = course.units.first
- #    @units = {}
- #    course.units.each do |unit|
- #      start_date = date_of_next("Monday", unit.course.duration.to_date)
- #      @units = {id: unit.id, first_start: start_date, second_start: start_date + counter, 
- #        third_start: start_date + 2*counter, fourth_start: start_date + 3*counter}
- #    end
- #    p '****************', @units
- #    # @units = Unit.between(params['start'], params['end']) if (params['start'] && params['end'])
-
- #    respond_to do |format|
- #      format.html # index.html.erb
- #      format.json { render json: @units }
- #    end
- #  end
