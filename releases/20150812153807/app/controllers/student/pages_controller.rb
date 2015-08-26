@@ -22,12 +22,19 @@ class Student::PagesController < Student::BaseController
    counter_start = 0
    counter_end = 5
    @units = []
+   
+   title_string = "Read " + "Unit "
+   chapters_string = " (chapters "
+   first_chapter = 1 
+
    course.units.each do |unit|
       start_date = date_of_next("Monday", unit.course.duration.to_date)
-      @units << { title: "Read" + " " + "Unit" + " " + unit.title, start: start_date + counter_start, 
+      @units << { title: title_string + unit.title + chapters_string + first_chapter.to_s + "~ " + unit.questions.count.to_s + ")", 
+                  start: start_date + counter_start, 
                   :end => start_date + counter_end }
       counter_start += 7
       counter_end = counter_start + 5
+      first_chapter = unit.questions.count + 1
    end
       render json: @units.to_json 
   end
