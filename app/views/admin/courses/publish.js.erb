@@ -1,0 +1,22 @@
+
+var pathname = window.location.pathname;
+
+if(pathname == '/admin/courses'){
+  
+  <% display_arr = [:title, :kind, :level, :duration, :published] %>
+  $('#course_<%= resource.id %>').replaceWith('<%=j(render :partial => "admin/shared/record_row", :locals => {:display_arr => display_arr, :resource => resource}) %>')
+
+}else{
+  <% display_arr = [:title, :kind] %>
+  <% if resource.kind == 'Test' %>
+    <% display_arr << :standard_description %>
+  <% else %>
+    <% display_arr = [:title, :kind, :level, :duration] %>
+  <% end %>
+  <% display_arr << :published %>
+  
+  $('#course_<%= resource.id %>').replaceWith('<%=j(render :partial => "admin/shared/record_row", :locals => {:display_arr => display_arr, :resource => resource}) %>')
+
+}
+
+

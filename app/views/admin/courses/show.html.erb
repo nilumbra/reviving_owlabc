@@ -1,0 +1,9 @@
+<% display_arr = [:title, :kind] %>
+<% if resource.kind == 'Test' %>
+  <% display_arr << :standard_description %>
+<% else %>
+  <% display_arr = [:title, :kind, :level, :duration] %>
+<% end %>
+<% display_arr << :published %>
+
+<%= render :partial => "admin/shared/table_show", :locals => {:display_arr => display_arr} %>

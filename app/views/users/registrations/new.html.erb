@@ -1,0 +1,32 @@
+<div class="ui two column middle aligned relaxed fitted stackable grid">
+  <div class="column">
+    <div class="ui form segment">
+      
+      <h2 class="ui top aligned center header">Sign Up</h2>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
+        <div class="field">
+          <%= f.input :username, required: true, autofocus: true %>
+        </div>
+        <div class="field">
+          <%= f.input :email, required: true %>
+        </div>
+        <div class="field">
+          <%= f.input :password, required: true %>
+        </div>
+        <div class="field">
+          <%= f.input :password_confirmation, required: true %>
+        </div>
+        
+        <%= f.button :submit, "Sign up" %>
+        
+      <% end %>
+    </div>
+  </div>
+  <div class="ui vertical divider">
+    Or
+  </div>
+  <div class="center aligned column">
+    <%= render "users/shared/links" %>
+  </div>
+</div>

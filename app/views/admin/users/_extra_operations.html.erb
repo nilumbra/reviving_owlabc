@@ -1,0 +1,6 @@
+<% if resource.payment_status == 'paid' %>
+| <%= link_to raw('<i class="minus icon"></i>Set As Unpaid'), switch_payment_status_admin_user_path(resource), :remote => true %>
+<% else %>
+| <%= link_to raw('<i class="dollar icon"></i>Set As Paid'), switch_payment_status_admin_user_path(resource), :remote => true %>
+<% end %>
+| <%= link_to raw('<i class="eye icon"></i>View Progress Report'), homework_report_admin_user_path(resource) %>

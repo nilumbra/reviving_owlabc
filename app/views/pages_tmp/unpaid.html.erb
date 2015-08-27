@@ -1,0 +1,30 @@
+
+  <%= render "student/shared/menu" %>
+
+  <div class="ui two column relaxed fitted stackable grid">
+    <div class="three wide column">
+      <div class="ui tiny card">
+        <div class="ui slide masked image">
+          <%= image_tag current_user.profile.avatar(:thumb), :class => "visible content profile_avatar_img" %>
+        </div>
+        <div class="content">
+          <a class="header">
+            <div class="fileUpload">
+              <label for="file" class="ui icon">
+                  <%= link_to raw('<i class="edit icon"></i>
+                  Edit Profile'), student_profile_path %></label>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <h2>Welcome back, <%= current_user.display_name %>!</h2>
+      <div class="ui divider"></div>
+      <h4>Thanks for registering an account.</h4>
+      <h4>
+        We'll activate your account within 24 hours. <br>
+        Questions? Email: <a>peter@owlabc.com</a> <br>
+      </h4>
+    </div>
+  </div>

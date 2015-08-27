@@ -1,0 +1,12 @@
+<h3 class="ui dividing header">
+  Edit <%= I18n.t "activerecord.models.#{resource.class.to_s.downcase}" %>
+</h3>
+
+<%= simple_form_for resource, :url => resource_path(resource), :method => :put do |f| %>
+  <%= f.error_notification %>
+  <%= render "shared/error_detail" %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  <%= f.button :submit, 'Save' %>
+<% end %>
+<%= render "admin/shared/page_links" %>
+
